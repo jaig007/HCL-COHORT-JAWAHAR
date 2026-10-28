@@ -93,3 +93,27 @@ the container itself". Docker forwards your traffic to the container's network i
 which `0.0.0.0` listens on. The tricky part: the `HEALTHCHECK` would still report
 *healthy*, because it calls `127.0.0.1` from inside the container.
 </details>
+
+---
+
+## Lab 3: async, Chat Completions format, tokens, unified models
+
+Full notes: [lab3-learning.md](lab3-learning.md)
+
+**Q1.** The gateway has one worker and uses *synchronous* code. Ten agents send requests at the same moment, and each provider call takes 5 seconds. Roughly how long does the last agent wait? How long with `async`?
+
+<details><summary>Answer</summary>
+
+About 50 seconds with synchronous code, because the requests are handled one after another
+(10 × 5 s). With `async`, about 5 seconds: all ten calls wait at the same time, and the
+worker handles each answer as it arrives.
+</details>
+
+**Q2.** A call sends a 50-token system message and a 30-token user question, and the model replies with 100 tokens. What are the input and output tokens? The user then asks a 20-token follow-up. What are the input tokens of the second call, and why?
+
+<details><summary>Answer</summary>
+
+First call: 80 input tokens (50 + 30) and 100 output tokens. Second call: about 200 input
+tokens (50 + 30 + 100 + 20), because the whole conversation, including the model's earlier
+answer, is sent again every time. The model remembers nothing between calls.
+</details>
