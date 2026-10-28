@@ -1,0 +1,27 @@
+# Virtual environment (each developer creates their own)
+.venv/
+venv/
+
+# Secrets - never commit real API keys
+.env
+
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+
+# Test and lint caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
