@@ -1,0 +1,7 @@
+services:
+  gateway:
+    build: .               # build the image from the Dockerfile in this folder
+    env_file: .env         # pass every setting in .env to the container
+    ports:
+      - "8000:8000"        # host port 8000 -> container port 8000
+    restart: unless-stopped

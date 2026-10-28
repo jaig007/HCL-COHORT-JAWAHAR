@@ -1,0 +1,25 @@
+# Local environment and secrets (secrets reach the container via env_file, not the image)
+.venv/
+venv/
+.env
+
+# Git and editor files
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Not needed inside the image
+docs/
+.claude/
+Dockerfile
+docker-compose.yml
+.dockerignore
